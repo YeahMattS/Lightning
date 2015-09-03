@@ -1,15 +1,31 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class Lightning extends PApplet {
+
 TheLightning l[] = new TheLightning[9001];
 int count = 0;
 int boltCount = 1;
 
-void setup()
+public void setup()
 {
 	size(500, 500);
 	background(0);
 	frameRate(10);
 }
 
-void draw()
+public void draw()
 {
 	for (int i = 0; i < l.length; i++)
 	{
@@ -25,7 +41,7 @@ void draw()
 	rect(-100, -100, 700, 700);
 }
 
-void mouseClicked()
+public void mouseClicked()
 {
 	for (int i = 0; i < boltCount; i++)
 	{
@@ -39,7 +55,7 @@ void mouseClicked()
 	}
 }
 
-void keyPressed()
+public void keyPressed()
 {
 	if (key == ' ')
 	{
@@ -61,7 +77,7 @@ class TheLightning
 		this.endX = endX;
 		this.endY = endY; 
 	}
-	void show()
+	public void show()
 	{
 		line(startX, startY, endX, endY);
 		startX = endX;
@@ -69,4 +85,13 @@ class TheLightning
 		endX += ((int)(Math.random()*20)-10);
 		endY += (int)(Math.random()*10);
 	}
+}
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "Lightning" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
 }
